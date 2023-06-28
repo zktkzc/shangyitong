@@ -1,13 +1,13 @@
 <template>
   <div class="container">
-<!--    顶部全局组件-->
+    <!--顶部全局组件-->
     <HospitalTop></HospitalTop>
-<!--    路由组件-->
+    <!--路由组件-->
     <div class="content">
-<!--      展示路由组件-->
+      <!--展示路由组件-->
       <router-view></router-view>
     </div>
-<!--    底部全局组件-->
+    <!--底部全局组件-->
     <HospitalBottom></HospitalBottom>
   </div>
 </template>
