@@ -5,7 +5,7 @@
 <template>
   <div class="region">
     <div class="content">
-      <div class="left">地区：</div>
+      <div class="left">地区:</div>
       <ul>
         <li class="active">全部</li>
         <li>昌平区</li>
