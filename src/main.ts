@@ -9,11 +9,16 @@ import HospitalTop from '@/components/hospital_top/index.vue'
 import HospitalBottom from '@/components/hospital_bottom/index.vue'
 // 引入vue-router核心组件并安装
 import router from '@/router'
+// 引入element-plus插件
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 // 利用createApp方法创建应用实例对象，且将应用实例挂载到挂载点#app上
 const app = createApp(App)
 app.component('HospitalTop', HospitalTop)
 app.component('HospitalBottom', HospitalBottom)
 // 安装vue-router
 app.use(router)
+// 安装element-plus插件
+app.use(ElementPlus)
 // 挂载
 app.mount('#app')
