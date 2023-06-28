@@ -70,3 +70,22 @@ export interface HospitalResponseData extends ReponseData {
         empty: boolean
     }
 }
+
+export interface HospitalLevelAndRegion extends ReponseData {
+    id: number,
+    createTime: string,
+    updateTime: string,
+    isDeleted: number,
+    param: {},
+    parentId: number,
+    name: string,
+    value: string,
+    dictCode: string,
+    hasChildren: boolean
+}
+
+export type HospitalLevelAndRegionArr = HospitalLevelAndRegion[];
+
+export interface HospitalLevelAndRegionResponseData extends ReponseData {
+    data: HospitalLevelAndRegionArr
+}

@@ -34,7 +34,6 @@ const getHospitalInfo = async () => {
     hasHospitalArr.value = result.data.content;
     // 存储医院总个数
     total.value = result.data.totalElements;
-    console.log(result);
   }
 };
 
