@@ -1,4 +1,7 @@
 <script setup lang="ts">
+// 引入组合式API函数
+import {onMounted, ref} from 'vue'
+import {reqHospital} from "@/api/home";
 // 引入首页轮播图组件
 import Carousel from './carousel/index.vue'
 // 引入首页搜索组件
@@ -9,12 +12,40 @@ import Level from './level/index.vue'
 import Region from './region/index.vue'
 // 引入首页展示医院信息的卡片组件
 import Card from './card/index.vue'
-// 分页器需要的数据
-import { ref } from 'vue'
 // 分页器页码
 let pageNo = ref<number>(1)
 // 翻页器一页展示几条数据
 let pageSize = ref<number>(10)
+// 存储已有的医院的数据
+let hasHospitalArr = ref([]);
+// 存储医院总个数
+let total = ref(0);
+// 在组件挂载完成后，发送请求获取数据
+onMounted(() => {
+  getHospitalInfo();
+});
+// 获取已有的医院的数据
+const getHospitalInfo = async () => {
+  // 获取医院的数据
+  let result: any = await reqHospital(pageNo.value, pageSize.value);
+  if (result.code == 200) {
+    // 存储已有的医院数据
+    hasHospitalArr.value = result.data.content;
+    // 存储医院总个数
+    total.value = result.data.totalElements;
+    console.log(result);
+  }
+};
+
+// 翻页器页码改变时触发的函数
+const currentChange = () => {
+  getHospitalInfo();
+};
+
+// 分页器下拉菜单发生变化时会触发
+const sizeChange = () => {
+  getHospitalInfo();
+};
 </script>
 
 <template>
@@ -32,7 +63,7 @@ let pageSize = ref<number>(10)
         <Region/>
         <!--展示医院的结构-->
         <div class="hospital">
-          <Card class="item" v-for="item in 10" :key="item"/>
+          <Card class="item" v-for="(item, index) in hasHospitalArr" :key="index" :hospitalInfo="item"/>
         </div>
         <!-- 分页器 -->
         <el-pagination
@@ -41,7 +72,9 @@ let pageSize = ref<number>(10)
             :page-sizes="[10, 20, 30, 40]"
             :background="true"
             layout="prev, pager, next, jumper, ->, sizes, total"
-            :total="13"
+            :total="total"
+            @current-change="currentChange"
+            @size-change="sizeChange"
         />
       </el-col>
       <el-col :span="4">456</el-col>
