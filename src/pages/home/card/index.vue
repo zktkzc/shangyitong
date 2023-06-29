@@ -1,11 +1,21 @@
 <script setup lang="ts">
+import {useRouter} from "vue-router";
 // 接收父组件传递过来的props数据，即为已有的医院数据
 defineProps(['hospitalInfo']);
+// 创建路由器对象
+let $router = useRouter();
+// 点击卡片跳转到医院详情页
+const GoDetail = () => {
+  // 跳转到医院详情页
+  $router.push({
+    path: '/hospital'
+  });
+};
 </script>
 
 <template>
   <div>
-    <el-card class="box-card" shadow="hover">
+    <el-card class="box-card" shadow="hover" @click="GoDetail">
       <div class="content">
         <div class="left">
           <div class="hospital_name">
