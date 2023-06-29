@@ -13,6 +13,8 @@ import Region from './region/index.vue'
 // 引入首页展示医院信息的卡片组件
 import Card from './card/index.vue'
 import type {Content, HospitalResponseData} from "@/api/home/type.ts";
+// 引入右侧组件
+import Tip from "@/pages/home/tip/index.vue";
 // 分页器页码
 let pageNo = ref<number>(1)
 // 翻页器一页展示几条数据
@@ -94,7 +96,10 @@ const GetRegion = (region: string) => {
             @size-change="sizeChange"
         />
       </el-col>
-      <el-col :span="4">456</el-col>
+      <el-col :span="4">
+        <!--右侧结构-->
+        <Tip/>
+      </el-col>
     </el-row>
   </div>
 </template>
