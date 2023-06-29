@@ -28,7 +28,7 @@ const fetchData = async (keyword: string, cb: any) => {
 const GoDetail = (item: any) => {
   // 跳转到医院详情页
   $router.push({
-    path: '/hospital'
+    path: '/hospital/register'
   });
 };
 </script>
