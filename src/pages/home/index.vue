@@ -66,6 +66,12 @@ const GetRegion = (region: string) => {
 };
 </script>
 
+<script lang="ts">
+export default {
+  name: 'Home'
+}
+</script>
+
 <template>
   <div>
     <!--首页轮播图结构-->

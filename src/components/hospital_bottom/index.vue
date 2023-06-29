@@ -2,6 +2,12 @@
 
 </script>
 
+<script lang="ts">
+export default {
+  name: 'HospitalBottom'
+}
+</script>
+
 <template>
   <div class="bottom">
     <div class="content">

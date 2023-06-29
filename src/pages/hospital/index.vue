@@ -2,15 +2,23 @@
 // 左侧菜单需要的图标
 import {Document, Menu as IconMenu, Setting, InfoFilled, Search, HomeFilled} from '@element-plus/icons-vue';
 import {useRoute, useRouter} from "vue-router";
+import {onMounted} from "vue";
+import useDetailStore from "@/store/module/hospitalDetail.ts";
 
 // 创建路由实例对象
 let $router = useRouter();
 // 获取当前路由的信息
 let $route = useRoute();
+// 获取仓库对象
+let detailStore = useDetailStore();
 // 左侧菜单点击事件回调
 const ChangeActive = (path: string) => {
   $router.push({path});
 };
+// 组件挂载完毕，通知pinia发送请求获取医院详情的数据，存储到仓库中
+onMounted(() => {
+  detailStore.getHospitalDetail($route.query.hoscode);
+});
 </script>
 
 <script lang="ts">

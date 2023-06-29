@@ -29,6 +29,12 @@ const ChangeLevel = (level: string) => {
 let $emit = defineEmits(['getLevel']);
 </script>
 
+<script lang="ts">
+export default {
+  name: 'Level'
+}
+</script>
+
 <template>
   <div class="level">
     <h1>医院</h1>

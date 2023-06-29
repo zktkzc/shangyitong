@@ -1,16 +1,25 @@
 <script setup lang="ts">
 import {useRouter} from "vue-router";
 // 接收父组件传递过来的props数据，即为已有的医院数据
-defineProps(['hospitalInfo']);
+let props = defineProps(['hospitalInfo']);
 // 创建路由器对象
 let $router = useRouter();
 // 点击卡片跳转到医院详情页
 const GoDetail = () => {
   // 跳转到医院详情页
   $router.push({
-    path: '/hospital/register'
+    path: '/hospital/register',
+    query: {
+      hoscode: props.hospitalInfo.hoscode
+    }
   });
 };
+</script>
+
+<script lang="ts">
+export default {
+  name: 'Card'
+}
 </script>
 
 <template>

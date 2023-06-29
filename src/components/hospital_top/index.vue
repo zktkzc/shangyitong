@@ -9,6 +9,12 @@ const GoHome = () => {
 };
 </script>
 
+<script lang="ts">
+export default {
+  name: 'HospitalTop'
+}
+</script>
+
 <template>
   <div class="top">
     <div class="content">

@@ -26,6 +26,12 @@ const ChangeRegion = (region: string) => {
 let $emit = defineEmits(['getRegion']);
 </script>
 
+<script lang="ts">
+export default {
+  name: 'Region'
+}
+</script>
+
 <template>
   <div class="region">
     <div class="content">
