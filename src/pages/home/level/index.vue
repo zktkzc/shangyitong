@@ -22,7 +22,11 @@ const GetLevel = async () => {
 // 点击医院等级
 const ChangeLevel = (level: string) => {
   activeFlag.value = level;
+  // 触发自定义事件，将医院等级参数回传给父组件
+  $emit('getLevel', level);
 };
+
+let $emit = defineEmits(['getLevel']);
 </script>
 
 <template>

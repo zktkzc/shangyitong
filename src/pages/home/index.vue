@@ -21,6 +21,10 @@ let pageSize = ref<number>(10)
 let hasHospitalArr = ref<Content>([]);
 // 存储医院总个数
 let total = ref<number>(0);
+// 存储医院的等级响应数据
+let hostype = ref<string>('');
+// 存储医院的地区响应数据
+let districtCode = ref<string>('');
 // 在组件挂载完成后，发送请求获取数据
 onMounted(() => {
   getHospitalInfo();
@@ -28,7 +32,7 @@ onMounted(() => {
 // 获取已有的医院的数据
 const getHospitalInfo = async () => {
   // 获取医院的数据
-  let result: HospitalResponseData = await reqHospital(pageNo.value, pageSize.value);
+  let result: HospitalResponseData = await reqHospital(pageNo.value, pageSize.value, hostype.value, districtCode.value);
   if (result.code == 200) {
     // 存储已有的医院数据
     hasHospitalArr.value = result.data.content;
@@ -46,6 +50,18 @@ const currentChange = () => {
 const sizeChange = () => {
   getHospitalInfo();
 };
+
+// 获取等级组件传递过来的数据
+const GetLevel = (level: string) => {
+  hostype.value = level;
+  getHospitalInfo();
+};
+
+// 获取地区组件传递过来的数据
+const GetRegion = (region: string) => {
+  districtCode.value = region;
+  getHospitalInfo();
+};
 </script>
 
 <template>
@@ -58,13 +74,14 @@ const sizeChange = () => {
     <el-row gutter="20">
       <el-col :span="20">
         <!--等级组件-->
-        <Level/>
+        <Level @getLevel="GetLevel"/>
         <!--地区-->
-        <Region/>
+        <Region @getRegion="GetRegion"/>
         <!--展示医院的结构-->
-        <div class="hospital">
+        <div class="hospital" v-if="hasHospitalArr.length>0">
           <Card class="item" v-for="(item, index) in hasHospitalArr" :key="index" :hospitalInfo="item"/>
         </div>
+        <el-empty v-else description="暂无数据"/>
         <!-- 分页器 -->
         <el-pagination
             v-model:current-page="pageNo"

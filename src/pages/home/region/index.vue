@@ -20,7 +20,10 @@ const GetRegion = async () => {
 
 const ChangeRegion = (region: string) => {
   regionFlag.value = region;
+  $emit('getRegion', region);
 }
+
+let $emit = defineEmits(['getRegion']);
 </script>
 
 <template>
