@@ -1,8 +1,20 @@
 <script setup lang="ts">
 // 引入医院详情仓库的数据
 import useDetailStore from "@/store/module/hospitalDetail.ts";
+import {ref} from "vue";
 
 let hospitalStore = useDetailStore();
+// 控制科室高亮的响应式数据
+let currentIndex = ref<Number>(0);
+// 左侧大的科室点击的事件
+const ChangeIndex = (index: number) => {
+  currentIndex.value = index;
+  let allH1 = document.querySelectorAll('.cur');
+  allH1[currentIndex.value].scrollIntoView({
+    behavior: 'smooth', // 平滑滚动
+    block: "start", // 与父元素顶部对齐
+  });
+}
 </script>
 
 <script lang="ts">
@@ -48,6 +60,27 @@ export default {
         <div class="rule">预约挂号规则</div>
         <div class="ruleinfo" v-for="(item, index) in hospitalStore.hospitalInfo.bookingRule?.rule" :key="index">
           {{ item }}
+        </div>
+      </div>
+    </div>
+    <div class="department">
+      <div class="leftNav">
+        <ul>
+          <li @click="ChangeIndex(index)" :class="{active:index==currentIndex}"
+              v-for="(department, index) in hospitalStore.departmentArr"
+              :key="department.depcode">{{ department.depname }}
+          </li>
+        </ul>
+      </div>
+      <div class="departmentInfo">
+        <div class="showDepartment" v-for="department in hospitalStore.departmentArr"
+             :key="department.depcode">
+          <h1 class="cur">{{ department.depname }}</h1>
+          <ul>
+            <li v-for="item in department.children" :key="item.depcode">
+              {{ item.depname }}
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -107,6 +140,68 @@ export default {
 
       .rule {
         margin: 10px 0;
+      }
+    }
+  }
+
+  .department {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    margin-top: 20px;
+
+    .leftNav {
+      width: 80px;
+      height: 100%;
+
+      ul {
+        width: 100%;
+        height: 100%;
+        background: rgb(248, 248, 248);
+        display: flex;
+        flex-direction: column;
+
+        li {
+          flex: 1;
+          text-align: center;
+          color: #7f7f7f;
+          font-size: 14px;
+          cursor: pointer;
+          line-height: 40px;
+
+          &.active {
+            border-left: 1px solid red;
+            color: red;
+            background: white;
+          }
+        }
+      }
+    }
+
+    .departmentInfo {
+      flex: 1;
+      margin-left: 20px;
+      height: 100%;
+      overflow: auto;
+
+      &::-webkit-scrollbar {
+        display: none; // 隐藏滚动条
+      }
+
+      h1 {
+        background: rgb(248, 248, 248);
+        color: #7f7f7f;
+      }
+
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+
+        li {
+          width: 33%;
+          color: #7f7f7f;
+          line-height: 30px;
+        }
       }
     }
   }

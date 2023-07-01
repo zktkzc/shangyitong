@@ -18,6 +18,8 @@ const ChangeActive = (path: string) => {
 // 组件挂载完毕，通知pinia发送请求获取医院详情的数据，存储到仓库中
 onMounted(() => {
   detailStore.getHospitalDetail($route.query.hoscode as string);
+  // 获取医院科室数据
+  detailStore.getDepartment($route.query.hoscode as string);
 });
 </script>
 
