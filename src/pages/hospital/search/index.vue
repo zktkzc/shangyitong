@@ -1,5 +1,8 @@
 <script setup lang="ts">
+// 引入医院详情仓库的数据
+import useDetailStore from "@/store/module/hospitalDetail.ts";
 
+let hospitalStore = useDetailStore();
 </script>
 
 <script lang="ts">
@@ -9,11 +12,17 @@ export default {
 </script>
 
 <template>
-  <div>
-    查询/取消
+  <div class="info">
+    <h1>{{ hospitalStore.hospitalInfo.hospital?.hosname }}停诊信息</h1>
+    <el-empty description="暂无信息"></el-empty>
   </div>
 </template>
 
 <style scoped lang="scss">
-
+.info {
+  h1 {
+    text-align: center;
+    font-size: 30px;
+  }
+}
 </style>

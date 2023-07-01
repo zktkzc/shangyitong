@@ -23,7 +23,7 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="card">
     <el-card class="box-card" shadow="hover" @click="GoDetail">
       <div class="content">
         <div class="left">
@@ -81,43 +81,47 @@ export default {
 </template>
 
 <style scoped lang="scss">
-.content {
-  display: flex;
-  justify-content: space-between;
+.card {
+  cursor: pointer;
 
-  .left {
-    width: 60%;
+  .content {
+    display: flex;
+    justify-content: space-between;
 
-    .tip {
-      margin-top: 20px;
-      display: flex;
-      justify-content: space-between;
-      color: #7f7f7f;
+    .left {
+      width: 60%;
 
-      .level {
+      .tip {
+        margin-top: 20px;
         display: flex;
-        align-items: center;
+        justify-content: space-between;
+        color: #7f7f7f;
 
-        span {
-          margin-left: 5px;
+        .level {
+          display: flex;
+          align-items: center;
+
+          span {
+            margin-left: 5px;
+          }
         }
-      }
 
-      .time {
-        display: flex;
-        align-items: center;
+        .time {
+          display: flex;
+          align-items: center;
 
-        span {
-          margin-left: 5px;
+          span {
+            margin-left: 5px;
+          }
         }
       }
     }
-  }
 
-  .right {
-    img {
-      width: 50px;
-      height: 50px;
+    .right {
+      img {
+        width: 50px;
+        height: 50px;
+      }
     }
   }
 }

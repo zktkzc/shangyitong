@@ -97,8 +97,14 @@ export default {
       color: #7f7f7f;
       margin-left: 10px;
 
-      div {
+      .address {
+        display: flex;
+        align-items: center;
+      }
+
+      .route {
         margin: 10px 0;
+        line-height: 30px;
       }
     }
   }

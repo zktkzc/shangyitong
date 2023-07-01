@@ -13,11 +13,11 @@ let $route = useRoute();
 let detailStore = useDetailStore();
 // 左侧菜单点击事件回调
 const ChangeActive = (path: string) => {
-  $router.push({path});
+  $router.push({path, query: {hoscode: $route.query.hoscode}});
 };
 // 组件挂载完毕，通知pinia发送请求获取医院详情的数据，存储到仓库中
 onMounted(() => {
-  detailStore.getHospitalDetail($route.query.hoscode);
+  detailStore.getHospitalDetail($route.query.hoscode as string);
 });
 </script>
 

@@ -101,6 +101,10 @@ export default {
         color: #7f7f7f;
       }
 
+      .route {
+        line-height: 20px;
+      }
+
       .rule {
         margin: 10px 0;
       }
