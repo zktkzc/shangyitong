@@ -2,12 +2,13 @@ import {defineStore} from "pinia";
 import {reqHospitalDetail} from "@/api/hospital";
 // 引入详情数据的ts类型
 import {HospitalDetail} from "@/api/hospital/type";
+import type {DetailState} from "@/store/module/interface/index";
 
 const useDetailStore = defineStore('Detail', {
-    state: () => {
+    state: (): DetailState => {
         return {
             // 医院详情的数据
-            hospitalInfo: {}
+            hospitalInfo: ({} as HospitalDetail)
         };
     },
     actions: {
