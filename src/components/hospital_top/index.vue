@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import {useRouter} from "vue-router";
+import useUserStore from "@/store/module/user.ts";
 
 let $router = useRouter();
+let userStore = useUserStore();
 const GoHome = () => {
   $router.push({
     path: '/'
   });
+};
+const Login = () => {
+  userStore.visiable = true;
 };
 </script>
 
@@ -26,7 +31,7 @@ export default {
       <!--右侧-->
       <div class="right">
         <p class="help">帮助中心</p>
-        <p class="login">登录/注册</p>
+        <p class="login" @click="Login">登录/注册</p>
       </div>
     </div>
   </div>

@@ -1,9 +1,11 @@
 <script setup lang="ts">
 // 引入医院详情仓库的数据
 import useDetailStore from "@/store/module/hospitalDetail.ts";
+import useUserStore from "@/store/module/user.ts";
 import {ref} from "vue";
 
 let hospitalStore = useDetailStore();
+let userStore = useUserStore();
 // 控制科室高亮的响应式数据
 let currentIndex = ref<Number>(0);
 // 左侧大的科室点击的事件
@@ -14,7 +16,11 @@ const ChangeIndex = (index: number) => {
     behavior: 'smooth', // 平滑滚动
     block: "start", // 与父元素顶部对齐
   });
-}
+};
+// 点击科室跳转到登录页面
+const ShowLogin = () => {
+  userStore.visiable = true;
+};
 </script>
 
 <script lang="ts">
@@ -77,7 +83,7 @@ export default {
              :key="department.depcode">
           <h1 class="cur">{{ department.depname }}</h1>
           <ul>
-            <li v-for="item in department.children" :key="item.depcode">
+            <li @click="ShowLogin" v-for="item in department.children" :key="item.depcode">
               {{ item.depname }}
             </li>
           </ul>

@@ -4,6 +4,8 @@ import {createApp} from 'vue'
 import '@/style/reset.scss'
 // 引入根组件App
 import App from '@/App.vue'
+// 引入login组件
+import Login from '@/components/login/index.vue'
 // 引入全局组件——顶部、底部
 import HospitalTop from '@/components/hospital_top/index.vue'
 import HospitalBottom from '@/components/hospital_bottom/index.vue'
@@ -21,6 +23,7 @@ import zhCn from 'element-plus/dist/locale/zh-cn.js'
 const app = createApp(App)
 app.component('HospitalTop', HospitalTop)
 app.component('HospitalBottom', HospitalBottom)
+app.component('Login', Login)
 // 安装vue-router
 app.use(router)
 // 安装element-plus插件

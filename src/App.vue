@@ -9,12 +9,15 @@
     </div>
     <!--底部全局组件-->
     <HospitalBottom></HospitalBottom>
+    <!-- 登录组件 -->
+    <Login/>
   </div>
 </template>
 
 <script setup lang="ts">
 import request from '@/utils/request'
 import {onMounted} from "vue"
+import Login from "@/components/login/index.vue";
 
 onMounted(() => {
   request.get('/hosp/hospital/1/10').then(res => {
